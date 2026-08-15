@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import 'pages/home_page.dart';
+import 'app_router.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AppShell extends StatelessWidget {
+  final Widget child;
+
+  const AppShell({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Fitness App'),
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            bottom: const TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.directions_car)),
-                Tab(icon: Icon(Icons.directions_transit)),
-                Tab(icon: Icon(Icons.directions_bike)),
-              ],
-            ),
-            // title: const Text('Tabs Demo'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Fitness App'),
+        actions: [
+          TextButton(
+            onPressed: () => context.go(AppRoutes.home),
+            child: const Text('Home'),
           ),
-          body: const TabBarView(
-            children: [HomePage(), HomePage(), HomePage()],
+          TextButton(
+            onPressed: () => context.go(AppRoutes.workout),
+            child: const Text('Workout'),
           ),
-        ),
+          TextButton(
+            onPressed: () => context.go(AppRoutes.profile),
+            child: const Text('Profile'),
+          ),
+        ],
       ),
+
+      body: child,
     );
   }
 }

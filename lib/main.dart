@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'app.dart';
-
-export 'app.dart';
+import 'app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const FitnessApp());
+}
+
+class FitnessApp extends StatelessWidget {
+  const FitnessApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: appRouter,
+    );
+  }
 }
