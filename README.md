@@ -16,7 +16,7 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-
+https://wger.readthedocs.io/en/latest/
 https://wger.de/api/v2/
 
 https://wger.de/api/v2/exerciseinfo/

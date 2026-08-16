@@ -5,13 +5,14 @@ import 'package:http/http.dart' as http;
 import 'package:fitnessapp/models/exercise_model.dart';
 
 class WgerApiService {
-  // Public wger API endpoint for exercises
-  static const String _url =
-      'https://wger.de/api/v2/exercise/?language=2'; // Language 2 = English
+  // Public wger API base URL
+  static const String _url = 'https://wger.de/api/v2';
 
   Future<List<Exercise>> fetchExercises() async {
+    final uri = Uri.parse('$_url/exerciseinfo/')
+        .replace(queryParameters: {'language': '2', 'limit': '100'});
     final response = await http.get(
-      Uri.parse(_url),
+      uri,
       headers: {'Accept': 'application/json'},
     );
 
@@ -19,11 +20,12 @@ class WgerApiService {
       // Decode the raw body text into a map
       final Map<String, dynamic> data = jsonDecode(response.body);
 
-      // The wger API returns arrays inside a 'results' key
-      final List<dynamic> results = data['results'];
+      final results = data['results'] as List<dynamic>? ?? [];
 
-      // Map each item in the array to our Exercise model
-      return results.map((json) => Exercise.fromJson(json)).toList();
+      return results
+          .whereType<Map<String, dynamic>>()
+          .map(Exercise.fromJson)
+          .toList();
     } else {
       throw Exception('Server error: ${response.statusCode}');
     }
