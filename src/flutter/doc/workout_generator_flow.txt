@@ -1,0 +1,36 @@
+# Fitness App Feature Flow: Instant Workout Generator
+
+## Overview
+This document outlines the core user journey and feature logic for the custom workout generator in our cross-platform Flutter fitness application.
+
+---
+
+## User Journey & Workflow
+
+### 1. Gmail Authentication
+* **Entry Point:** Users log securely into the application using their Gmail credentials.
+* **Session Start:** Upon successful login, the user is directed to the main selection dashboard.
+
+### 2. Primary Workout Category Selection
+The user chooses one of the main program paths:
+* **Home Workouts**
+* **Fitness Workouts / Fitness Programs**
+
+### 3. Secondary Flow: Home Workouts (Example path)
+If the user selects **Home Workouts**, they are presented with specific training styles:
+* **Muscle Isolation** (targeting specific muscle groups)
+* **Full Body** (comprehensive multi-joint movements)
+
+### 4. Exercise Volume & Dynamic Difficulty Rating
+* **Exercise Count Selector:** The user selects how many total exercises they wish to perform in their session.
+* **Dynamic Feedback:** As the user adjusts the exercise count, the app dynamically evaluates the volume and displays a difficulty rating:
+  * 🟢 **Beginner** (lower volume / foundational count)
+  * 🟡 **Intermediate** (moderate volume)
+  * 🔴 **Advanced** (high volume / intense session)
+
+### 5. Workout Generation
+* **Action:** The user clicks the **"Generate"** button.
+* **Result:** The app queries the local SQLite exercise dataset (featuring our comprehensive exercise library) and compiles a custom workout timeline adhering to the selected filters and duration.
+
+### 6. Saving to Library
+* **Final Step:** Once the custom workout is generated and displayed on screen, the user has the option to **Save to Library** for future quick access and tracking.
